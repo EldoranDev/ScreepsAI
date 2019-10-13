@@ -4,7 +4,7 @@ const roles = require('./_roles');
 module.exports = {
     name: roles.REMOTE_HARVESTER,
 
-    amount: 1,
+    amount: 2,
 
     body: {
         [WORK]: 3,
@@ -21,9 +21,10 @@ module.exports = {
     /** @param {Creep} creep * */
     run(creep) {
         if (!creep.memory.targetRoom) {
-            const activeRemotes = _.filter(Game.creeps, (c) => {
-                c.memory.name = roles.REMOTE_HARVESTER;
-            }).map((c) => c.memory.targetRoom);
+            const activeRemotes = _.filter(
+                Game.creeps,
+                (c) => c.memory.role === roles.REMOTE_HARVESTER,
+            ).map((c) => c.memory.targetRoom);
 
             const available = _.filter(
                 config.REMOTE_SOURCE_ROOMS,
