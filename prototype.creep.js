@@ -90,12 +90,35 @@ Creep.prototype.findDeposit = function(forceQuick = false) {
         return this.room.storage;
     }
 
-    return this.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+    let deposit = this.pos.findClosestByPath(FIND_MY_STRUCTURES, {
         filter: structure => (
             structure instanceof StructureSpawn
             || structure instanceof StructureExtension
             || structure instanceof StructureTower
-            || structure instanceof StructureStorage
         ) && structure.energy < structure.energyCapacity
     });
+
+    if(deposit) {
+        return deposit;
+    }
+
+    deposit = this.pos.findClosestByPath(FIND_STRUCTURES, {
+        filter: structure => {
+            if (!(structure instanceof StructureContainer)) {
+                return false;
+            }
+
+            if (_.filter(structure.pos.lookFor(LOOK_CREEPS), c => c.memory.role === roles.UPGRADER).length !== 1) {
+                return false;
+            }
+
+            return !(structure.store[RESOURCE_ENERGY] === structure.storeCapacity);
+        }
+    });
+
+    if(deposit) {
+        return deposit;
+    }
+
+    return this.room.storage;
 };
