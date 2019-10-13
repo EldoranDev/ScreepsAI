@@ -1,11 +1,13 @@
+const roles = require('./_roles');
+
 module.exports = {
     // name of the creep type
-    name: 'UPGRADER',
+    name: roles.UPGRADER,
     amount: 1,
 
     body: {
         [WORK]: 4,
-        [CARRY]: 43,
+        [CARRY]: 4,
         [MOVE]: 1,
     },
 
