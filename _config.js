@@ -11,10 +11,12 @@ module.exports = {
     REMOTE_SOURCE_ROOMS: [
         'W7N4',
     ],
-    UPGRADE_CONTAINERS: 1,
     HEALTH_TARGETS: {
-        GENERAL: 0.9,
-        GENERAL_BOUND: 900000,
+        GENERAL: 0.95,
+        GENERAL_BOUND: 500000,
         WALLS: 500000,
-    }
+    },
+    FLAGS: {
+        PARKING: 'Parking',
+    },
 };

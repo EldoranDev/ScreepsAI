@@ -4,7 +4,7 @@ const config = require('./_config');
 module.exports = {
     // name of the creep type
     name: roles.BUILDER,
-    amount: 2,
+    amount: 3,
 
     body: {
       [WORK]: 2,
@@ -19,7 +19,6 @@ module.exports = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        creep.memory.builder = 2;
         if (creep.memory.working === true) {
             if (creep.carry[RESOURCE_ENERGY] > 0) {
                 if (creep.memory.builder > 0) {
@@ -36,16 +35,9 @@ module.exports = {
                         return;
                     }
 
-                    // If there is nothing to repair and the builder is in build mode go and repair walls
-                    // TODO: Remove if all our defenses are setup
-                    const wall = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                        filter: (s) => s.hits < config.HEALTH_TARGETS.WALLS && s.structureType === STRUCTURE_WALL
-                    });
-
-                    if(creep.repair(wall) === ERR_NOT_IN_RANGE) {
-                        creep.moveTo(wall);
-                    }
-
+                    creep.moveTo(creep.pos.findClosestByPath(FIND_FLAGS, {
+                        filter: f => f.name === config.FLAGS.PARKING,
+                    }));
                 } else {
                     const structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                         filter: (s) =>

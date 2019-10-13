@@ -3,7 +3,7 @@ const roles = require('./_roles');
 module.exports = {
     // name of the creep type
     name: roles.UPGRADER,
-    amount: 1,
+    amount: 3,
 
     body: {
         [WORK]: 4,
@@ -52,9 +52,10 @@ module.exports = {
                 });
 
                 if (containers.length === 0) {
-                    creep.say("No emtpy upgrade container");
+                    creep.say("❗️🔋");
                 } else {
                     creep.moveTo(containers[0]);
+                    creep.say(" 🚂🔋");
                 }
             }
         }

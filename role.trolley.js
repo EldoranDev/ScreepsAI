@@ -5,7 +5,7 @@ module.exports = {
     name: ROLES.TROLLEY,
 
     // Number of creeps
-    amount: 2,
+    amount: 4,
 
     body: {
         [CARRY]: 4,
@@ -30,7 +30,7 @@ module.exports = {
                     }
                 }
 
-                const container = creep.findEnergyContainer();
+                const container = creep.getEnergy(true);
 
                 if (container) {
 

@@ -34,7 +34,6 @@ module.exports.loop = function () {
 
     Memory.cleanup--;
 
-    // Run all creeps
     for (const creep of Object.values(Game.creeps)) {
         ROLES[creep.memory.role].run(creep);
     }
