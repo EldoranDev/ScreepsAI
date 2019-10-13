@@ -54,6 +54,7 @@ Creep.prototype.getEnergy = function getEnergy(preferMine = false) {
         } else {
             this.moveTo(this.room.storage);
         }
+        return;
     }
 
     const container = this.findEnergyContainer();
@@ -143,48 +144,4 @@ Creep.prototype.findDeposit = function findDeposit(forceQuick = false) {
     }
 
     return this.room.storage;
-};
-
-/**
- *
- * @param {String} room
- */
-Creep.prototype.getPathToStorage = function getPathToStorage(room) {
-    return PathFinder.search(
-        this.pos, Game.rooms[room].storage,
-        {
-            // We need to set the defaults costs higher so that we
-            // can set the road cost lower in `roomCallback`
-            plainCost: 2,
-            swampCost: 10,
-
-            /**
-       * @param roomName
-       * @returns {PathFinder.CostMatrix}
-       */
-            roomCallback(roomName) {
-                const r = Game.rooms[roomName];
-                // In this example `room` will always exist, but since
-                // PathFinder supports searches which span multiple rooms
-                // you should be careful!
-                if (!r) return;
-                const costs = new PathFinder.CostMatrix();
-
-                r.find(FIND_STRUCTURES).forEach((struct) => {
-                    if (struct.structureType === STRUCTURE_ROAD) {
-                        // Favor roads over plain tiles
-                        costs.set(struct.pos.x, struct.pos.y, 1);
-                    } else if (struct.structureType !== STRUCTURE_CONTAINER
-                        && (struct.structureType !== STRUCTURE_RAMPART
-                            || !struct.my)) {
-                        // Can't walk through non-walkable buildings
-                        costs.set(struct.pos.x, struct.pos.y, 0xff);
-                    }
-                });
-
-                // eslint-disable-next-line consistent-return
-                return costs;
-            },
-        },
-    );
 };
