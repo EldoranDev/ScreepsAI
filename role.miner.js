@@ -26,8 +26,10 @@ module.exports = {
 
             if (creep.pos.isEqualTo(pos)) {
                 const source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+                creep.say("⛏");
                 creep.harvest(source);
             } else {
+                creep.say("🚂");
                 creep.moveTo(pos);
             }
         } else {

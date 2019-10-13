@@ -4,9 +4,9 @@ module.exports = {
     amount: 1,
 
     body: {
-        [WORK]: 3,
-        [CARRY]: 3,
-        [MOVE]: 6,
+        [WORK]: 4,
+        [CARRY]: 43,
+        [MOVE]: 1,
     },
 
     memory: {
@@ -18,6 +18,7 @@ module.exports = {
         if(creep.memory.upgrading) {
             if(creep.carry[RESOURCE_ENERGY] > 0) {
                 creep.upgradeController(creep.room.controller);
+                creep.say("🌟");
             } else {
                 const containers = _.filter(creep.pos.lookFor(LOOK_STRUCTURES), s => s instanceof StructureContainer);
 

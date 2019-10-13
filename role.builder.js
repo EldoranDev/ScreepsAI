@@ -23,6 +23,7 @@ module.exports = {
         if (creep.memory.working === true) {
             if (creep.carry[RESOURCE_ENERGY] > 0) {
                 if (creep.memory.builder > 0) {
+                    creep.say("🔨");
                     creep.memory.builder--;
 
                     const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
@@ -54,6 +55,7 @@ module.exports = {
                     });
 
                     if (structure) {
+                        creep.say("🔧");
                         if (creep.repair(structure) === ERR_NOT_IN_RANGE) {
                             // move towards it
                             creep.moveTo(structure);
@@ -67,7 +69,7 @@ module.exports = {
             }
         } else {
             creep.getEnergy();
-
+            creep.say("🔄⚡");
             if(creep.carry[RESOURCE_ENERGY] === creep.carryCapacity) {
                 creep.memory.working = true;
             }

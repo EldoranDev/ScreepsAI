@@ -20,6 +20,7 @@ module.exports = {
     run: function(creep) {
         if (!creep.memory.delivering) {
             if (creep.carry.energy < creep.carryCapacity) {
+                creep.say("🔄⚡");
                 const energy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
 
                 if (energy) {
@@ -32,7 +33,9 @@ module.exports = {
                 const container = creep.findEnergyContainer();
 
                 if (container) {
+
                     if (creep.withdraw(container, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+
                         creep.moveTo(container);
                     }
                 }
@@ -41,8 +44,12 @@ module.exports = {
             }
         } else {
             const target = creep.findDeposit();
+            if(!target) {
+                creep.say("💤");
+            }
 
             if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                creep.say("🚂⚡");
                 creep.moveTo(target);
             }
 
