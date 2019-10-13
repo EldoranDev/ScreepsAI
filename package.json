@@ -1,0 +1,25 @@
+{
+  "name": "screeps-ai",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI for the game screeps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EldoranDev/ScreepsAI.git"
+  },
+  "scripts": {
+    "lint": "eslint ./*.js",
+    "lint:fix": "eslint ./*.js --fix"
+  },
+  "author": "Marcel Behrmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EldoranDev/ScreepsAI/issues"
+  },
+  "homepage": "https://github.com/EldoranDev/ScreepsAI#readme",
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
