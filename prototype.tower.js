@@ -1,23 +1,23 @@
 const config = require('./_config');
 
-StructureTower.prototype.run = function () {
-  const enemy = this.pos.findClosestByRange(FIND_CREEPS, {
-    filter: (c) => !c.my,
-  });
+StructureTower.prototype.run = function run() {
+    const enemy = this.pos.findClosestByRange(FIND_CREEPS, {
+        filter: (c) => !c.my,
+    });
 
-  if (enemy) {
-    this.attack(enemy);
-    return;
-  }
+    if (enemy) {
+        this.attack(enemy);
+        return;
+    }
 
-  const wall = this.pos.findClosestByRange(FIND_STRUCTURES, {
-    filter: (s) => (
-      s instanceof StructureWall
+    const wall = this.pos.findClosestByRange(FIND_STRUCTURES, {
+        filter: (s) => (
+            s instanceof StructureWall
             || s instanceof StructureRampart
-    ) && s.hits < s.hitsMax && s.hits < config.HEALTH_TARGETS.WALLS,
-  });
+        ) && s.hits < s.hitsMax && s.hits < config.HEALTH_TARGETS.WALLS,
+    });
 
-  if (wall) {
-    this.repair(wall);
-  }
+    if (wall) {
+        this.repair(wall);
+    }
 };

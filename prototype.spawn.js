@@ -4,10 +4,10 @@
  *
  * @param role
  */
-StructureSpawn.prototype.spawn = function (role) {
+StructureSpawn.prototype.spawn = function spawn(role) {
     const body = [];
 
-    for(let part of Object.keys(role.body)) {
+    for (const part of Object.keys(role.body)) {
         body.push(...(Array(role.body[part]).fill(part)));
     }
 
