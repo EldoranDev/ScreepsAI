@@ -2,12 +2,12 @@ module.exports = {
     // name of the creep type
     name: 'HARVESTER',
     // Number of creeps
-    amount: 0,
+    amount: 1,
 
     body: {
-        [WORK]: 2,
-        [CARRY]: 2,
-        [MOVE]: 4,
+        [WORK]: 1,
+        [CARRY]: 1,
+        [MOVE]: 2,
     },
 
     memory: {

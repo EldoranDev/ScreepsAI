@@ -87,6 +87,14 @@ Creep.prototype.getEnergy = function getEnergy(preferMine = false) {
         } else {
             this.moveTo(this.room.storage);
         }
+
+        return;
+    }
+
+    const source = this.room.getSources()[0];
+
+    if (this.harvest(source) === ERR_NOT_IN_RANGE) {
+        this.moveTo(source);
     }
 };
 

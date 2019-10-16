@@ -4,12 +4,12 @@ const config = require('./_config');
 module.exports = {
     // name of the creep type
     name: roles.BUILDER,
-    amount: 3,
+    amount: 1,
 
     body: {
-        [WORK]: 2,
-        [CARRY]: 3,
-        [MOVE]: 5,
+        [WORK]: 1,
+        [CARRY]: 1,
+        [MOVE]: 2,
     },
 
     memory: {

@@ -21,5 +21,7 @@ module.exports = {
     'no-param-reassign': ["error", { "props": false }],
     'global-require': 0,
     'no-undef': 0,
+    'no-console': 0,
+    'no-underscore-dangle': 0,
   },
 };

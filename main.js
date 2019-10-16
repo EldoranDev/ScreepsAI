@@ -1,6 +1,9 @@
 require('./prototype.spawn');
 require('./prototype.tower');
 require('./prototype.creep');
+require('./prototype.room');
+require('./prototype.source');
+require('./prototype.controller');
 
 const config = require('./_config');
 
@@ -22,7 +25,7 @@ for (const role of [
 const CREEP_TYPES = Object.keys(ROLES);
 
 module.exports.loop = function loop() {
-    if (Memory.cleanup <= 0) {
+    if (Memory.cleanup <= 0 && Memory.creeps) {
         for (const name of Object.keys(Memory.creeps)) {
             if (!Game.creeps[name]) {
                 delete Memory.creeps[name];
@@ -64,4 +67,19 @@ module.exports.loop = function loop() {
             Game.spawns[config.SPAWNS.zion].spawn(ROLES[type]);
         }
     }
+
+    for (const roomName of config.ROOMS) {
+        const room = Game.rooms[roomName];
+        const sources = room.getSources();
+        if (!room.controller.hasContainers() && !room.controller.isBuildingContainer()) {
+            room.controller.buildContainer();
+        }
+
+        for (const source of sources) {
+            if (!source.hasContainer() && !source.isBuildingContainer()) {
+                source.buildContainer();
+            }
+        }
+    }
+
 };
