@@ -1,14 +1,15 @@
+const BodyDefinition = require('./tools.bodydefinition');
+
 module.exports = {
     // name of the creep type
     name: 'HARVESTER',
     // Number of creeps
     amount: 1,
 
-    body: {
-        [WORK]: 1,
-        [CARRY]: 1,
-        [MOVE]: 2,
-    },
+    body: new BodyDefinition(
+        1,
+        1
+    ),
 
     memory: {
         delivering: true,

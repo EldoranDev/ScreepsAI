@@ -1,15 +1,21 @@
 const roles = require('./_roles');
+const BodyDefinition = require('./tools.bodydefinition');
 
 module.exports = {
     // name of the creep type
     name: roles.UPGRADER,
     amount: 3,
 
-    body: {
-        [WORK]: 1,
-        [CARRY]: 1,
-        [MOVE]: 2,
-    },
+    body: new BodyDefinition(
+        1,
+        1,
+        false,
+        {
+            [MOVE]: false,
+            [CARRY]: false,
+            [WORK]: true,
+        }
+    ),
 
     memory: {
         upgrading: false,

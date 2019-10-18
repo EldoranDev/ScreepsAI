@@ -1,4 +1,5 @@
 const ROLES = require('./_roles');
+const BodyDefinition = require('./tools.bodydefinition');
 
 module.exports = {
     // name of the creep type
@@ -7,10 +8,10 @@ module.exports = {
     // Number of creeps
     amount: 4,
 
-    body: {
-        [CARRY]: 4,
-        [MOVE]: 4,
-    },
+    body: new BodyDefinition(
+        1,
+        1,
+    ),
 
     memory: {
         delivering: true,

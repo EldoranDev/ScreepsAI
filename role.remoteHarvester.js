@@ -1,16 +1,16 @@
 const config = require('./_config');
 const roles = require('./_roles');
+const BodyDefinition = require('./tools.bodydefinition');
 
 module.exports = {
     name: roles.REMOTE_HARVESTER,
 
     amount: 2,
 
-    body: {
-        [WORK]: 3,
-        [CARRY]: 3,
-        [MOVE]: 6,
-    },
+    body: new BodyDefinition(
+        1,
+        1,
+    ),
 
     memory: {
         targetRoom: null,

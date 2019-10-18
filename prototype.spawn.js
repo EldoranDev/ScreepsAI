@@ -1,4 +1,3 @@
-
 /**
  * Spawn a creep for the given Role
  *
@@ -7,8 +6,10 @@
 StructureSpawn.prototype.spawn = function spawn(role) {
     const body = [];
 
-    for (const part of Object.keys(role.body)) {
-        body.push(...(Array(role.body[part]).fill(part)));
+    const parts = role.body.getBody(this.room.energyCapacityAvailable);
+
+    for (const part of Object.keys(parts)) {
+        body.push(...(Array(parts[part]).fill(part)));
     }
 
     this.spawnCreep(body, `${role.name}-${Game.time}`, {

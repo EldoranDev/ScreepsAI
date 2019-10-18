@@ -1,16 +1,16 @@
 const roles = require('./_roles');
 const config = require('./_config');
+const BodyDefinition = require('./tools.bodydefinition');
 
 module.exports = {
     // name of the creep type
     name: roles.BUILDER,
-    amount: 1,
+    amount: 4,
 
-    body: {
-        [WORK]: 1,
-        [CARRY]: 1,
-        [MOVE]: 2,
-    },
+    body: new BodyDefinition(
+        1,
+        1,
+    ),
 
     memory: {
         working: false,
